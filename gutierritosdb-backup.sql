@@ -26,9 +26,11 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table gutierritosdb.categorias: ~0 rows (approximately)
+INSERT INTO `categorias` (`id`, `nombre`, `createdAt`, `updatedAt`) VALUES
+	(1, 'Articulos de consumo diario', '2023-05-05 06:35:45', '2023-05-05 06:35:45');
 
 -- Dumping structure for table gutierritosdb.clientes
 CREATE TABLE IF NOT EXISTS `clientes` (
@@ -41,9 +43,11 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table gutierritosdb.clientes: ~0 rows (approximately)
+INSERT INTO `clientes` (`id`, `nombre`, `nit`, `direccion`, `telefono`, `correo`, `createdAt`, `updatedAt`) VALUES
+	(1, 'Julio Jaramillo', '83247289', '2 calle 2-2 zona 2 Quetzaltenango', '392749824', 'julio@gmail.com', '2023-05-05 06:36:42', '2023-05-05 06:36:42');
 
 -- Dumping structure for table gutierritosdb.detallefacturas
 CREATE TABLE IF NOT EXISTS `detallefacturas` (
@@ -58,9 +62,11 @@ CREATE TABLE IF NOT EXISTS `detallefacturas` (
   KEY `FK_detallefacturas_productos` (`productoid`),
   CONSTRAINT `FK_detallefacturas_facturas` FOREIGN KEY (`facturaid`) REFERENCES `facturas` (`id`),
   CONSTRAINT `FK_detallefacturas_productos` FOREIGN KEY (`productoid`) REFERENCES `productos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table gutierritosdb.detallefacturas: ~0 rows (approximately)
+INSERT INTO `detallefacturas` (`id`, `cantidad`, `facturaid`, `productoid`, `createdAt`, `updatedAt`) VALUES
+	(1, 5, 1, 1, '2023-05-05 06:39:15', '2023-05-05 06:39:15');
 
 -- Dumping structure for table gutierritosdb.empleados
 CREATE TABLE IF NOT EXISTS `empleados` (
@@ -79,9 +85,15 @@ CREATE TABLE IF NOT EXISTS `empleados` (
   PRIMARY KEY (`id`),
   KEY `FK_empleados_puestos` (`puestoid`),
   CONSTRAINT `FK_empleados_puestos` FOREIGN KEY (`puestoid`) REFERENCES `puestos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table gutierritosdb.empleados: ~0 rows (approximately)
+INSERT INTO `empleados` (`id`, `nombre`, `fechanacimiento`, `direccion`, `telefono`, `correo`, `fechacontratacion`, `fechaterminacion`, `estado`, `puestoid`, `createdAt`, `updatedAt`) VALUES
+	(1, 'Alejandro Ale Ale jandro', '2001-05-07', '1 calle 1-1 zona 1', '111111111', 'alejandro@dropbox.com', '2023-04-04', '2023-05-04', 'activo', 2, '2023-05-05 01:24:18', '2023-05-05 06:23:24'),
+	(2, 'Lucha Villa', '1936-11-30', '8 calle 8-8 zona 8 Chihuahua México', '2834672', 'luchavilla@gmail.com', '2023-05-05', '2024-07-10', 'activo', 1, '2023-05-05 06:22:52', '2023-05-05 06:22:52'),
+	(3, 'Pedro Saj', '2001-05-10', '9 calle 3-2 zona 6 Quetzaltenango, Guatemala', '32489723', 'pedrosaj@gmail.com', '2023-05-05', '2024-04-24', 'activo', 3, '2023-05-05 06:24:38', '2023-05-05 06:24:38'),
+	(4, 'María Antonieta de las Nieves', '1960-06-24', '221B Baker Street Washington D.C.', '(745) 983-5789', 'antonieta@gmail.com', '2023-05-05', '2024-04-23', 'activo', 4, '2023-05-05 06:25:55', '2023-05-05 06:25:55'),
+	(5, 'Max Presley', '1935-01-08', 'Graceland United States ', '324928733', 'presley@gmail.com', '2023-05-05', '2023-12-13', 'activo', 5, '2023-05-05 06:27:44', '2023-05-05 06:27:44');
 
 -- Dumping structure for table gutierritosdb.facturas
 CREATE TABLE IF NOT EXISTS `facturas` (
@@ -96,9 +108,11 @@ CREATE TABLE IF NOT EXISTS `facturas` (
   KEY `FK_facturas_empleados` (`empleadoid`),
   CONSTRAINT `FK_facturas_clientes` FOREIGN KEY (`clienteid`) REFERENCES `clientes` (`id`),
   CONSTRAINT `FK_facturas_empleados` FOREIGN KEY (`empleadoid`) REFERENCES `empleados` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table gutierritosdb.facturas: ~0 rows (approximately)
+INSERT INTO `facturas` (`id`, `fecha`, `clienteid`, `empleadoid`, `createdAt`, `updatedAt`) VALUES
+	(1, '2023-05-05', 1, 1, '2023-05-05 06:38:56', '2023-05-05 06:38:56');
 
 -- Dumping structure for table gutierritosdb.pedidos
 CREATE TABLE IF NOT EXISTS `pedidos` (
@@ -114,9 +128,11 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   KEY `FK_pedidos_proveedores` (`proveedorid`),
   CONSTRAINT `FK_pedidos_productos` FOREIGN KEY (`productoid`) REFERENCES `productos` (`id`),
   CONSTRAINT `FK_pedidos_proveedores` FOREIGN KEY (`proveedorid`) REFERENCES `proveedores` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table gutierritosdb.pedidos: ~0 rows (approximately)
+INSERT INTO `pedidos` (`id`, `fecha`, `estado`, `productoid`, `proveedorid`, `createdAt`, `updatedAt`) VALUES
+	(1, '2023-05-05', 'activo', 1, 1, '2023-05-05 06:40:26', '2023-05-05 06:40:26');
 
 -- Dumping structure for table gutierritosdb.productos
 CREATE TABLE IF NOT EXISTS `productos` (
@@ -132,9 +148,11 @@ CREATE TABLE IF NOT EXISTS `productos` (
   PRIMARY KEY (`id`),
   KEY `FK_productos_categorias` (`categoriaid`),
   CONSTRAINT `FK_productos_categorias` FOREIGN KEY (`categoriaid`) REFERENCES `categorias` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table gutierritosdb.productos: ~0 rows (approximately)
+INSERT INTO `productos` (`id`, `nombre`, `imagen`, `descripcion`, `precio`, `stock`, `categoriaid`, `createdAt`, `updatedAt`) VALUES
+	(1, 'Multímetro', 'https://seir.com.gt/wp-content/uploads/2022/12/MUT-105.jpg', 'Aparato electrónico', '12', 14, 1, '2023-05-05 06:38:17', '2023-05-05 06:38:17');
 
 -- Dumping structure for table gutierritosdb.proveedores
 CREATE TABLE IF NOT EXISTS `proveedores` (
@@ -146,9 +164,11 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table gutierritosdb.proveedores: ~0 rows (approximately)
+INSERT INTO `proveedores` (`id`, `nombre`, `telefono`, `direccion`, `correo`, `createdAt`, `updatedAt`) VALUES
+	(1, 'wallmart', '239847', '3 calle 3-3 zona 3 quetgo.', 'wallmart@hotmail.com', '2023-05-05 01:22:12', '2023-05-05 01:22:19');
 
 -- Dumping structure for table gutierritosdb.puestos
 CREATE TABLE IF NOT EXISTS `puestos` (
@@ -158,9 +178,15 @@ CREATE TABLE IF NOT EXISTS `puestos` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table gutierritosdb.puestos: ~0 rows (approximately)
+INSERT INTO `puestos` (`id`, `nombre`, `salario`, `createdAt`, `updatedAt`) VALUES
+	(1, 'Dueño', '214', '2023-05-05 01:22:59', '2023-05-05 01:22:59'),
+	(2, 'Gerente', '1000', '2023-05-05 01:22:59', '2023-05-05 01:22:59'),
+	(3, 'Secretariado', '512', '2023-05-04 23:56:51', '2023-05-04 23:56:52'),
+	(4, 'Contabilidad', '256', '2023-05-04 23:57:25', '2023-05-04 23:57:26'),
+	(5, 'Cajero', '256', '2023-05-04 23:58:26', '2023-05-04 23:58:29');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
