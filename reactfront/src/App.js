@@ -36,6 +36,14 @@ import CompShowDetallefacturas from './detallefacturas/ShowDetallefacturas.js';
 import CompCreateDetallefacturas from './detallefacturas/CreateDetallefacturas.js';
 import CompEditDetallefacturas from './detallefacturas/EditDetallefacturas.js';
 
+import CompHome from './home/Home';
+
+import CompDashboardDuenio from './dashboards/DashboardDuenio.js';
+import CompDashboardGerente from './dashboards/DashboardGerente.js';
+import CompDashboardSecretariado from './dashboards/DashboardSecretariado.js';
+import CompDashboardContabilidad from './dashboards/DashboardContabilidad.js';
+import CompDashboardCajero from './dashboards/DashboardCajero.js';
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
@@ -43,6 +51,14 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path='/' element={ <CompHome/> } />
+
+          <Route path='/duenio' element={ <CompDashboardDuenio/> } />
+          <Route path='/gerente' element={ <CompDashboardGerente/> } />
+          <Route path='/secretariado' element={ <CompDashboardSecretariado/> } />
+          <Route path='/contabilidad' element={ <CompDashboardContabilidad/> } />
+          <Route path='/cajero' element={ <CompDashboardCajero/> } />
+
           <Route path='/puestos/' element={ <CompShowPuestos/>}/>
           <Route path='/puestos/create' element={ <CompCreatePuestos/>}/>
           <Route path='/puestos/edit/:id' element={ <CompEditPuestos/>}/>
